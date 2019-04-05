@@ -6,10 +6,21 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
+  z-index: 3;
 }
 
 .game__score {
   //float: right;
   margin-right: 20px;
   align-self: flex-end;
+}
+
+.game__dino {
+  margin-left: 40px;
+}
+
+.game__ground {
+  position: absolute;
+  top: 188px;
 }
