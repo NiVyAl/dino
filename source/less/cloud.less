@@ -1,0 +1,18 @@
+.cloud-container {
+  height: 100px;
+  position: relative;
+}
+
+.cloud-container__item {
+  width: 48px;
+  height: 16px;
+  display: block;
+  background-image: url("img/cloud.png");
+  position: absolute;
+  right: -48px;
+  transition: 10s linear transform;
+}
+
+.cloud-container__item--move {
+  transform: translateX(-550px);
+}

@@ -47,4 +47,35 @@ document.addEventListener('keyup', function(evt) {
     dino.classList.remove("dino--jump");
     dino.style.transform = 'translateY(0)';
   }
-})
+});
+
+
+/* cloud */
+
+var cloud = document.querySelector(".cloud-container__item");
+
+var decorationMove = function() {
+  cloud.style.transition = "10s linear transform";
+  cloud.style.top = Math.floor(Math.random() * (100 - 1) ) + 1 + 'px';
+  cloud.classList.add("cloud-container__item--move");
+  
+  //cloud.style.transition = "none";
+  //cloud.classList.remove("cloud-container__item--move");
+}
+
+setInterval(function() { 
+  decorationMove();
+}, 5000);
+/*
+var pause = function(pauseTime) {
+  var l = new Date();
+  var c;
+  var diff;
+  while(1) {
+    c = new Date();
+    diff = c - l;
+    if (diff > 100) {
+      break;
+    }
+  } 
+} */
