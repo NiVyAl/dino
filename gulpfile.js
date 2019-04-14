@@ -24,7 +24,7 @@ gulp.task("html", function() {
 
 gulp.task("scripts", function() {
   return gulp.src("source/scripts/**")
-    .pipe(uglify())
+    //.pipe(uglify())
     .pipe(gulp.dest("build/scripts/"));
 });
 
