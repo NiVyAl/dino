@@ -79,31 +79,36 @@ var cloud = document.querySelector(".cloud-container__item");
   }
 } 
 */
-var isDecorationMove = false;
+//var isDecorationMove = false;
 cloud.classList.remove("cloud-container__item--move");
-
-var decorationMove = function() {
-  cloud.style.top = Math.floor(Math.random() * (100 - 1) ) + 1 + 'px';
+var a = 0;
+var b = 0;
+var decorationMove = function(object) {
+  object.style.top = Math.floor(Math.random() * (100 - 1) ) + 1 + 'px';
+  //cloud.style.transition = "10s linear transform";
+  object.classList.add("cloud-container__item--move");
   
-  console.log("decorationMove");
-  cloud.style.transition = "10s linear transform";
-  cloud.classList.add("cloud-container__item--move");
-  isDecorationMove = true;
+  setInterval(function() {
+    //cloud.style.transition = "none";
+    object.classList.remove("cloud-container__item--move");
+    a = a + 9995;
+    console.log("сброс" + a);
+    //isDecorationMove = false;
+  }, 9995);
   
-  setTimeout(function() {
-    console.log(isDecorationMove);
-    if (isDecorationMove) {
-      cloud.style.transition = "0s linear transform";
-      cloud.classList.remove("cloud-container__item--move");
-      //console.log("setTimeout");
-      isDecorationMove = false;
-    }
-  }, 9999);
-  
-  //console.log(cloud.classList);
+  setInterval(function() {
+    object.style.top = Math.floor(Math.random() * (100 - 1) ) + 1 + 'px';
+    
+    b = b + 10000;
+    console.log("decorationMove" + b);
+    //cloud.style.transition = "10s linear transform";
+    object.classList.add("cloud-container__item--move");
+    isDecorationMove = true;
+  }, 10000);
 }
 
-decorationMove();
-setInterval(function() { 
+decorationMove(cloud);
+
+/*setInterval(function() { 
   decorationMove();
-}, 10000);
+}, 10000); */
