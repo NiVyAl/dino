@@ -79,36 +79,48 @@ var cloud = document.querySelector(".cloud-container__item");
   }
 } 
 */
-//var isDecorationMove = false;
+
 cloud.classList.remove("cloud-container__item--move");
 var a = 0;
 var b = 0;
+var dateDecorationRemove = 0;
 var decorationMove = function(object) {
+
   object.style.top = Math.floor(Math.random() * (100 - 1) ) + 1 + 'px';
-  //cloud.style.transition = "10s linear transform";
   object.classList.add("cloud-container__item--move");
   
   setInterval(function() {
-    //cloud.style.transition = "none";
     object.classList.remove("cloud-container__item--move");
-    a = a + 9995;
-    console.log("сброс" + a);
-    //isDecorationMove = false;
-  }, 9995);
-  
-  setInterval(function() {
-    object.style.top = Math.floor(Math.random() * (100 - 1) ) + 1 + 'px';
+    //console.log("remove");
+    a = a + 10000;
+    //console.log("a: " + a);
+    //console.log("b: " + b);
     
-    b = b + 10000;
-    console.log("decorationMove" + b);
-    //cloud.style.transition = "10s linear transform";
-    object.classList.add("cloud-container__item--move");
-    isDecorationMove = true;
+    dateDecorationRemove = Date.now();
+    
+    setTimeout(function() {
+      object.style.top = Math.floor(Math.random() * (100 - 1) ) + 1 + 'px';
+      console.log("timeOut");
+      object.classList.add("cloud-container__item--move");
+    }, 20);
   }, 10000);
-}
+  /*
+  setTimeout(function() {
+      //console.log(Date.now() - dateDecorationRemove);
+      if ( (7 < (Date.now() - dateDecorationRemove)) && ((Date.now() - dateDecorationRemove) < 20)) {
+          //console.log("разница времени " + (Date.now() - dateDecorationRemove) );
+          //console.log("remove time " + a);
+          //console.log("add time " + b);
+
+          object.style.top = Math.floor(Math.random() * (100 - 1) ) + 1 + 'px';
+
+          object.classList.add("cloud-container__item--move");
+          //console.log("add");    
+      }
+
+        //b = b + 10;
+        //console.log("b: " + b);
+    }, 10); */
+} 
 
 decorationMove(cloud);
-
-/*setInterval(function() { 
-  decorationMove();
-}, 10000); */
