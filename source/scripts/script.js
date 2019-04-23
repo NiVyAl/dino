@@ -42,37 +42,79 @@ document.addEventListener('keydown', function(evt) {
 
 /* cloud */
 
-var cloud = document.querySelector(".cloud-container__item");
-var cactus = document.querySelector(".cactus");
+var cloud = document.querySelectorAll(".cloud-container__item");
+var cloud1 = document.querySelector(".cloud-container__item--1");
+var cloud2 = document.querySelector(".cloud-container__item--2");
 
-cloud.classList.remove("cloud-container__item--move");
+var cactus = document.querySelectorAll(".cactus");
+var cactus1 = document.querySelector(".cactus--1");
+var cactus2 = document.querySelector(".cactus--2");
+var cactus3 = document.querySelector(".cactus--3");
+
+for (var i = 0; i < cloud.length; i++) {
+  cloud[i].classList.remove("cloud-container__item--move");
+}
 
 var decorationMove = function(object) {
-  if (object == cloud) {
-    var classMove = "cloud-container__item--move"; 
-    var moveTime = 10000;
-    
-    object.style.top = Math.floor(Math.random() * (100 - 1) ) + 1 + 'px';
+  var isRepeat = true;
+  for (var i = 0; i < cloud.length; i++){
+    if (object == cloud[i]) {
+      var classMove = "cloud-container__item--move"; 
+      var moveTime = 10000;
+
+      object.style.top = Math.floor(Math.random() * (100 - 1) ) + 1 + 'px';
+    };
+  }
+   
+  for (var i = 0; i < cactus.length; i++){
+    if (object == cactus[i]) {
+      var classMove = "cactus--move";
+      var moveTime = 3000;
+    };
   };
-  if (object == cactus) {
-    var classMove = "cactus--move";
-    var moveTime = 3000;
-  };
+  
   
   object.classList.add(classMove);
   
   setInterval(function() {
-    object.classList.remove(classMove);
+    if (isRepeat) {
+      object.classList.remove(classMove);
     
-    setTimeout(function() {
-      if (object == cloud) {
-        object.style.top = Math.floor(Math.random() * (100 - 1) ) + 1 + 'px';  
-      };
+      setTimeout(function() {
+        for (var i = 0; i < cloud.length; i++){
+          if (object == cloud[i]) {
+            object.style.top = Math.floor(Math.random() * (100 - 1) ) + 1 + 'px';  
+          };
+        }
+
+        object.classList.add(classMove);
+      }, 20); 
       
-      object.classList.add(classMove);
-    }, 20);
+      
+      for (var i = 0; i < cactus.length; i++){
+        if (object == cactus[i]) {
+          isRepeat = false;
+        };
+      };
+    };
   }, moveTime);
 }; 
 
-decorationMove(cloud);
-decorationMove(cactus);
+decorationMove(cloud1);
+
+setTimeout(function(){
+  decorationMove(cloud2);
+}, 5000)
+
+
+setInterval(function(){
+  decorationMove(cactus1);
+}, 6000)
+
+setInterval(function(){
+  decorationMove(cactus2);
+}, 5000)
+
+setInterval(function(){
+  decorationMove(cactus3);
+}, 3000)
