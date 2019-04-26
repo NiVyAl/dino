@@ -87,12 +87,12 @@ var decorationMove = function(object) {
   }, moveTime);
 }; 
 
-/*
+
 decorationMove(cloud1);
 setTimeout(function(){
   decorationMove(cloud2);
 }, 5000) 
-
+/*
 setInterval(function(){
   decorationMove(cactus1);
 }, 6000)
@@ -133,14 +133,44 @@ document.addEventListener('keydown', function(evt) {
 });
 
 /* прыжок прогр */
-
-decorationMove(cactus3);
-var cactusStartTime = Date.now(); 
+var cactusStartTime;
+setInterval(function(){
+  decorationMove(cactus3);
+  cactusStartTime = Date.now(); 
+  isJumped = false;
+}, 2000)
 
 var jump = function() {
   console.log(Date.now() - cactusStartTime);
   if ( ((Date.now() - cactusStartTime) > 1350) && ((Date.now() - cactusStartTime) < 1500) ) {
-    //console.log("win");
     isJumped = true;
   }
+}
+
+
+/* Score */
+
+var startTime = Date.now();
+var scoreNowContainer = document.querySelector(".score__now");
+var scoreNow = 0;
+
+setInterval(function(){
+  scoreNow = Math.round((Date.now() - startTime) / 500);
+  scoreWrite(scoreNow);
+  
+}, 500)
+
+var scoreWrite = function(number) {
+  var j = 0;
+  var k = number;
+  while(k >= 1) {
+    k = k / 10;
+    j++;
+  }
+
+  var howManyNull = 5 - j;
+  for (var i = 0; i < howManyNull; i++) {
+    number = "0" + number;
+  }
+  scoreNowContainer.innerHTML = number;
 }
