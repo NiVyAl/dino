@@ -25,6 +25,8 @@ var cactus1 = document.querySelector(".cactus--1");
 var cactus2 = document.querySelector(".cactus--2");
 var cactus3 = document.querySelector(".cactus--3");
 
+var allSoil = document.querySelectorAll(".soil");
+
 var isJumped = false;
 
 for (var i = 0; i < cloud.length; i++) {
@@ -34,7 +36,7 @@ for (var i = 0; i < cloud.length; i++) {
 var decorationMove = function(object) {
   //var cactusStartTime = Date.now(); 
   var isRepeat = true;
-  for (var i = 0; i < cloud.length; i++){
+  for (var i = 0; i < cloud.length; i++){  // если движущийся объект облако
     if (object == cloud[i]) {
       var classMove = "cloud-container__item--move"; 
       var moveTime = 10000;
@@ -45,11 +47,19 @@ var decorationMove = function(object) {
     };
   }
    
-  for (var i = 0; i < cactus.length; i++){
+  for (var i = 0; i < cactus.length; i++){ 
     if (object == cactus[i]) {
       var classMove = "cactus--move";
       //var moveTime = 3000;
       var moveTime = 1;
+    };
+  };
+  
+  for (var i = 0; i < allSoil.length; i++){ 
+    if (object == allSoil[i]) {
+      var classMove = "soil--move";
+      //var moveTime = 3000;
+      var moveTime = 2000;
     };
   };
   
@@ -93,6 +103,41 @@ setTimeout(function(){
   decorationMove(cloud2);
 }, 5000) 
 
+/* soil */
+
+for (var i = 0; i < allSoil.length; i++) { // раздаем координаты всем грязинкам
+  allSoil[i].style.top = Math.floor(Math.random() * (10 - 3) ) + 3 + 'px'; 
+  //allSoil[i].style.right = Math.floor(Math.random() * (480 - 1) ) + 1 + 'px';
+} 
+
+decorationMove(allSoil[0]);
+setTimeout(function(){
+  decorationMove(allSoil[1]); // переделать!!!
+}, 500); 
+setTimeout(function(){
+  decorationMove(allSoil[2]);
+}, 1000); 
+setTimeout(function(){
+  decorationMove(allSoil[3]);
+}, 1500); 
+setTimeout(function(){
+  decorationMove(allSoil[4]);
+}, 2200); 
+setTimeout(function(){
+  decorationMove(allSoil[5]);
+}, 2500); 
+setTimeout(function(){
+  decorationMove(allSoil[6]);
+}, 3100); 
+setTimeout(function(){
+  decorationMove(allSoil[7]);
+}, 3700); 
+setTimeout(function(){
+  decorationMove(allSoil[8]);
+}, 3900); 
+setTimeout(function(){
+  decorationMove(allSoil[9]);
+}, 4400); 
 
 /* прыжок */
 
@@ -167,7 +212,9 @@ setInterval(function(){
     scoreNow = Math.round((Date.now() - startTime) / 500);
     scoreWrite(scoreNow, scoreNowContainer);
   } else {
-    localStorage.setItem("highScore", scoreNow);
+    if (scoreNow > localStorage.getItem("highScore")) {
+      localStorage.setItem("highScore", scoreNow);
+    }
   }
   
-}, 500)
+}, 500);
